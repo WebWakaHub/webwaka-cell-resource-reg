@@ -1,9 +1,27 @@
 /**
- * ResourceRegistry — Public API
- * Cell: CEL-RESOURCEREG-v0.1.0
- * Category: Resource & Asset Control
+ * ResourceReg — Cell Layer
+ * Composes organelles per BIOLOGICAL_GOVERNANCE_CONSTITUTION §4.1
+ * Layer: cell → depends on → organelle
  */
 
-export { ResourceRegistry, ResourceRegistryValidationError } from './resource-reg-cell';
-export { ResourceRegistryOrchestrator } from './resource-reg-orchestrator';
-export * from './types';
+import { ResourceAllocatorOrchestrator } from "@webwaka/organelle-resource-allocator";
+import { DiscoveryRegistryOrchestrator } from "@webwaka/organelle-discovery-registry";
+
+export { ResourceAllocatorOrchestrator } from '@webwaka/organelle-resource-allocator';
+export { DiscoveryRegistryOrchestrator } from '@webwaka/organelle-discovery-registry';
+
+/**
+ * ResourceReg Composition
+ * Assembles organelle-layer components into a cohesive cell-layer capability.
+ */
+export class ResourceRegComposition {
+  private resourceAllocatorOrchestrator: ResourceAllocatorOrchestrator;
+  private discoveryRegistryOrchestrator: DiscoveryRegistryOrchestrator;
+
+  constructor() {
+    this.resourceAllocatorOrchestrator = new ResourceAllocatorOrchestrator();
+    this.discoveryRegistryOrchestrator = new DiscoveryRegistryOrchestrator();
+  }
+}
+
+export * from "./types";
